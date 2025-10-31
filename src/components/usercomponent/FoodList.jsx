@@ -5,11 +5,10 @@ import axios from '../../api/axios';
 import { useSelector } from 'react-redux';
 import ShimmerGrid from '../shimer/ShimmerGrid';
 import FoodCard from './FoodCard';
-import FilterBar from './FilterBar';
+import FilterBar from './FilterBar'; // ← No props!
 
 const fetchFoods = async () => {
 	const res = await axios.get('foods/user/foods');
-	console.log(res.data);
 	return res.data;
 };
 
@@ -25,22 +24,15 @@ export default function FoodList() {
 		refetchOnWindowFocus: false,
 	});
 
-	const filterState = useSelector((state) => state.filter);
-	const category = filterState?.category || 'all';
-	const search = filterState?.search || '';
-	const restaurant = filterState?.restaurant || 'all';
+	const { category = 'all', search = '', restaurant = 'all' } = useSelector((state) => state.filter);
 
 	if (isLoading) return <ShimmerGrid count={8} />;
 	if (error) return <div className="text-red-500 text-center mt-8">Error loading foods.</div>;
 
-	// Updated filtering logic to include restaurant filter
 	const filteredFoods = foods.filter((food) => {
 		const matchCategory = category === 'all' || food.category?.toLowerCase() === category.toLowerCase();
-
 		const matchSearch = search === '' || food.name?.toLowerCase().includes(search.toLowerCase());
-
 		const matchRestaurant = restaurant === 'all' || food.shopkeeper?.restaurantName?.toLowerCase() === restaurant.toLowerCase();
-
 		return matchCategory && matchSearch && matchRestaurant;
 	});
 
@@ -50,16 +42,14 @@ export default function FoodList() {
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
 				className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-black text-white py-12 px-6">
-				{/* Header */}
 				<div className="text-center m-12">
 					<h1 className="text-4xl md:text-5xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">Explore Our Delicious Foods</h1>
 					<p className="text-gray-400 max-w-2xl mx-auto">Handcrafted meals, freshly made by our top restaurants.</p>
 				</div>
 
-				{/* Filters */}
-				<FilterBar foods={foods} />
+				{/* FilterBar uses Redux only */}
+				<FilterBar />
 
-				{/* Food Grid */}
 				<motion.div
 					layout
 					className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 container mx-auto">

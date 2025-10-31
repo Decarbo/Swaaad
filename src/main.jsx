@@ -23,17 +23,15 @@ const queryClient = new QueryClient({
 });
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-	<React.StrictMode>
-		<Provider store={store}>
-			<BrowserRouter>
-				<PersistGate
-					loading={null}
-					persistor={persistor}>
-					<QueryClientProvider client={queryClient}>
-						<App />
-					</QueryClientProvider>
-				</PersistGate>
-			</BrowserRouter>
-		</Provider>
-	</React.StrictMode>
+	<Provider store={store}>
+		<BrowserRouter>
+			<PersistGate
+				loading={null}
+				persistor={persistor}>
+				<QueryClientProvider client={queryClient}>
+					<App />
+				</QueryClientProvider>
+			</PersistGate>
+		</BrowserRouter>
+	</Provider>
 );

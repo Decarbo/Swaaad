@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import ShimmerOrderCard from './shimer/ShimmerOrderCard';
 
 export default function RestaurantOrders() {
 	const { admin, token } = useSelector((state) => state.admin);
@@ -57,7 +58,13 @@ export default function RestaurantOrders() {
 	};
 
 	if (loading) {
-		return <p className="text-center mt-20 text-yellow-400 text-lg animate-pulse">Loading orders...</p>;
+		return (
+			<div>
+				{[1, 2, 3].map((i) => (
+					<ShimmerOrderCard key={i} />
+				))}
+			</div>
+		);
 	}
 
 	if (!token || !admin) {

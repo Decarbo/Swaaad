@@ -20,9 +20,10 @@ import LiveTableStatus from './components/LiveTableStatus';
 import Hero from './components/usercomponent/Hero';
 function App() {
 	return (
-		<Routes>
-			{/* Routes with Navbar */}
-			{/* <Route element={<AdminLayout />}>
+		<div className="bg-gray-900 min-h-screen">
+			<Routes className="bg-gray-900 min-h-screen">
+				{/* Routes with Navbar */}
+				{/* <Route element={<AdminLayout />}>
 
 				<Route
 					path="/login"
@@ -46,80 +47,81 @@ function App() {
 					element={<RestaurantOrders />}
 				/>
 			</Route> */}
-			<Route element={<AdminLayout />}>
-				<Route
-					path="/admin/"
-					element={<Dashboard />}
-				/>
-				<Route
-					path="/dashboard"
-					element={<Dashboard />}
-				/>
-				<Route
-					path="/create"
-					element={<CreateFood />}
-				/>
-				<Route
-					path="/status"
-					element={<LiveTableStatus />}
-				/>
-				<Route
-					path="/register"
-					element={<Register />}
-				/>
-				<Route
-					path="/login"
-					element={<Login />}
-				/>
-				<Route
-					path="/assign-table"
-					element={<RestaurantOrders />}
-				/>
-			</Route>
-			<Route element={<UserLayout />}>
-				<Route
-					path="/"
-					element={<Landing />}
-				/>
-				<Route
-					path="/restaurantmenu"
-					element={<RestaurantMenu />}
-				/>
-			
-				<Route
-					path="/user/register"
-					element={<UserRegister />}
-				/>
-				<Route
-					path="/user/login"
-					element={<UserLogin />}
-				/>
-				<Route
-					path="/menu"
-					element={<FoodList />}
-				/>
-				<Route
-					path="/food/:id"
-					element={<FoodDetail />}
-				/>
-				<Route
-					path="/cart"
-					element={<CartPage />}
-				/>
-				<Route
-					path="/MyOrders"
-					element={<MyOrders />}
-				/>
-			</Route>
+				<Route element={<AdminLayout />}>
+					<Route
+						path="/admin/"
+						element={<Dashboard />}
+					/>
+					<Route
+						path="/dashboard"
+						element={<Dashboard />}
+					/>
+					<Route
+						path="/create"
+						element={<CreateFood />}
+					/>
+					<Route
+						path="/status"
+						element={<LiveTableStatus />}
+					/>
+					<Route
+						path="/register"
+						element={<Register />}
+					/>
+					<Route
+						path="/login"
+						element={<Login />}
+					/>
+					<Route
+						path="/assign-table"
+						element={<RestaurantOrders />}
+					/>
+				</Route>
+				<Route element={<UserLayout />}>
+					<Route
+						path="/"
+						element={<Landing />}
+					/>
+					<Route
+						path="/restaurantmenu"
+						element={<RestaurantMenu />}
+					/>
 
-			{/* Routes without Navbar */}
+					<Route
+						path="/user/register"
+						element={<UserRegister />}
+					/>
+					<Route
+						path="/user/login"
+						element={<UserLogin />}
+					/>
+					<Route
+						path="/menu"
+						element={<FoodList />}
+					/>
+					<Route
+						path="/food/:id"
+						element={<FoodDetail />}
+					/>
+					<Route
+						path="/cart"
+						element={<CartPage />}
+					/>
+					<Route
+						path="/MyOrders"
+						element={<MyOrders />}
+					/>
+				</Route>
 
-			{/* Catch-all 404 */}
-			<Route
-				path="*"
-				element={<div className="p-10 text-center text-2xl">404 - Page Not Found</div>}
-			/>
-		</Routes>
+				{/* Routes without Navbar */}
+
+				{/* Catch-all 404 */}
+				<Route
+					path="*"
+					element={<div className="p-10 text-center text-2xl">404 - Page Not Found</div>}
+				/>
+			</Routes>
+		</div>
 	);
 }
 
