@@ -1,0 +1,11 @@
+@import 'tailwindcss';
+
+.font1 {
+	font-family: 'Reenie Beanie', cursive;
+}
+.font2 {
+	font-family: 'Comic Neue', cursive;
+}
+/* .font1{
+font-family: 'Cedarville Cursive', cursive;
+} */
