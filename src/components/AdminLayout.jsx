@@ -8,7 +8,7 @@ export default function AdminLayout() {
 		<>
 			<AdminNavbar />
 			<main>
-				<Outlet /> {/* Child route renders here */}
+				<Outlet /> 
 			</main>
 		</>
 	);

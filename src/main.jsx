@@ -7,11 +7,11 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import store, { persistor } from './redux/store';
 
-// 🧠 Import React Query essentials
+// Import React Query essentials
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
-// 🧩 Create a single query client instance
+//  Create a single query client instance
 const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {
@@ -29,11 +29,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 				<PersistGate
 					loading={null}
 					persistor={persistor}>
-					{/* 🟢 Add QueryClientProvider here */}
 					<QueryClientProvider client={queryClient}>
 						<App />
-						{/* 🧭 Optional DevTools for debugging queries */}
-						<ReactQueryDevtools initialIsOpen={false} />
 					</QueryClientProvider>
 				</PersistGate>
 			</BrowserRouter>

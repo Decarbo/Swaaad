@@ -8,7 +8,6 @@ import axios from '../../api/axios';
 import { useQuery } from '@tanstack/react-query';
 import ShimmerGrid from '../shimer/ShimmerGrid';
 
-// Fetch a single food by ID
 const fetchFoodById = async (id) => {
 	const res = await axios.get(`/foods/user/foods/${id}`);
 	return res.data;
@@ -25,7 +24,7 @@ export default function FoodDetail() {
 	} = useQuery({
 		queryKey: ['food', id],
 		queryFn: () => fetchFoodById(id),
-		staleTime: 5 * 60 * 1000, // 5 minutes cache
+		staleTime: 5 * 60 * 1000,
 		refetchOnWindowFocus: false,
 	});
 

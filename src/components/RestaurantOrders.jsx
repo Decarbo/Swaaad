@@ -11,9 +11,8 @@ export default function RestaurantOrders() {
 	const [assigningOrder, setAssigningOrder] = useState(null);
 	const [tableNumber, setTableNumber] = useState('');
 
-	const BASE_URL = 'http://localhost:5000/api/user/restaurant/orders';
+	const BASE_URL = 'https://swaaad-backend.onrender.com/api/user/restaurant/orders';
 
-	// Fetch Orders + Auto-refresh every 10 seconds
 	useEffect(() => {
 		if (!token) return;
 
@@ -34,7 +33,6 @@ export default function RestaurantOrders() {
 		fetchOrders();
 	}, [token]);
 
-	// Mark Order as Done → Free Table
 	const handleMarkAsDone = async (orderId) => {
 		if (!window.confirm('Mark order as done? Table will be freed.')) return;
 		try {
@@ -46,7 +44,6 @@ export default function RestaurantOrders() {
 		}
 	};
 
-	// Assign Table
 	const handleAssignTable = async () => {
 		if (!tableNumber.trim()) return alert('Enter table number');
 		try {
@@ -59,7 +56,6 @@ export default function RestaurantOrders() {
 		}
 	};
 
-	// Loading & Auth States
 	if (loading) {
 		return <p className="text-center mt-20 text-yellow-400 text-lg animate-pulse">Loading orders...</p>;
 	}
@@ -93,7 +89,6 @@ export default function RestaurantOrders() {
 		);
 	}
 
-	// Main UI
 	return (
 		<div className="min-h-screen bg-gray-900 text-white p-4 md:p-8">
 			<h1 className="text-3xl md:text-4xl pt-10 font-bold text-yellow-400 text-center mb-8">Customer Orders</h1>
@@ -119,12 +114,10 @@ export default function RestaurantOrders() {
 							{order.status !== 'Pending' && <p className="text-gray-400 text-sm">Updated: {new Date(order.updatedAt).toLocaleString()}</p>}
 						</div>
 
-						{/* Food Items */}
 						<div className="space-y-3">
 							{order.items.map((item) => {
 								const food = item.food;
 
-								// Handle deleted/missing food
 								if (!food) {
 									return (
 										<div
@@ -162,7 +155,6 @@ export default function RestaurantOrders() {
 							})}
 						</div>
 
-						{/* Total Price */}
 						<p className="mt-4 text-gray-300 font-semibold text-lg">
 							Total: ₹
 							{order.items.reduce((acc, i) => {
@@ -171,9 +163,7 @@ export default function RestaurantOrders() {
 							}, 0)}
 						</p>
 
-						{/* Action Buttons */}
 						<div className="mt-4 flex gap-2 flex-wrap">
-							{/* Assign Table */}
 							{!order.tableNumber && order.status === 'Table Requested' && (
 								<button
 									onClick={() => setAssigningOrder(order)}
@@ -182,7 +172,6 @@ export default function RestaurantOrders() {
 								</button>
 							)}
 
-							{/* Done Button */}
 							{order.tableNumber && order.status === 'Table Assigned' && (
 								<button
 									onClick={() => handleMarkAsDone(order._id)}
@@ -191,7 +180,6 @@ export default function RestaurantOrders() {
 								</button>
 							)}
 
-							{/* Status Badges */}
 							{order.status === 'Done' && <span className="px-4 py-2 rounded-xl bg-blue-600 text-white font-medium">Done user Payed</span>}
 							{order.status === 'Cancelled' && <span className="px-4 py-2 rounded-xl bg-red-600 text-white font-medium">Cancelled By User</span>}
 						</div>

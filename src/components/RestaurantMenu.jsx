@@ -82,7 +82,7 @@ export default function RestaurantMenu() {
           >
             <div className="flex items-center gap-3 mb-6">
               {section.icon}
-              <h2 className="text-3xl font-semibold text-white font1">{section.title}</h2>
+              <h2 className="text-3xl font-semibold text-white font2">{section.title}</h2>
             </div>
             <div className="space-y-4">
               {section.items.map((item, i) => (

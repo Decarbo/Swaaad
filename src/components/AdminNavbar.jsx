@@ -9,7 +9,7 @@ export default function AdminNavbar() {
   const [open, setOpen] = useState(false);
   const { admin } = useSelector((state) => state.admin);
 
-  console.log('🧩 Admin from Redux:', admin); // Debug check
+  console.log('🧩 Admin from Redux:', admin);
 
   const links = [
     { name: 'Dashboard', path: '/admin' },
@@ -54,7 +54,6 @@ export default function AdminNavbar() {
               </div>
             ))}
 
-            {/* ✅ Admin info + Logout */}
             {admin ? (
               <div className="flex items-center gap-4 pl-4 border-l border-gray-700">
                 <div className="text-sm text-gray-300">
@@ -72,7 +71,6 @@ export default function AdminNavbar() {
             )}
           </div>
 
-          {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center">
             <button onClick={() => setOpen(!open)} aria-label="Toggle Menu">
               {open ? (
@@ -84,7 +82,6 @@ export default function AdminNavbar() {
           </div>
         </div>
 
-        {/* ✅ Mobile Menu */}
         <AnimatePresence>
           {open && (
             <motion.div
@@ -113,7 +110,6 @@ export default function AdminNavbar() {
                   </li>
                 ))}
 
-                {/* ✅ Mobile: Show admin or login */}
                 {admin ? (
                   <li className="flex items-center justify-between px-3 pt-3 border-t border-gray-700">
                     <div className="text-sm text-gray-300">

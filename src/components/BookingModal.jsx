@@ -21,7 +21,7 @@ export default function BookingModal({ onClose, onConfirm }) {
 			alert('Please fill all required fields');
 			return;
 		}
-		onConfirm(form); // pass payNow boolean to parent
+		onConfirm(form);
 		console.log(form);
 	};
 
@@ -36,7 +36,6 @@ export default function BookingModal({ onClose, onConfirm }) {
 				<form
 					onSubmit={handleSubmit}
 					className="space-y-4">
-					{/* Full Name */}
 					<div>
 						<label className="block text-gray-300 mb-1">Full Name</label>
 						<input
@@ -49,7 +48,6 @@ export default function BookingModal({ onClose, onConfirm }) {
 						/>
 					</div>
 
-					{/* Phone Number */}
 					<div>
 						<label className="block text-gray-300 mb-1">Phone Number</label>
 						<input
@@ -62,7 +60,6 @@ export default function BookingModal({ onClose, onConfirm }) {
 						/>
 					</div>
 
-					{/* Special Instructions */}
 					<div>
 						<label className="block text-gray-300 mb-1">Special Instructions</label>
 						<textarea

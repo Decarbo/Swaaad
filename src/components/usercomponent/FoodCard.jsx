@@ -130,7 +130,7 @@ const FoodCard = memo(({ food, idx }) => {
         <div className="mt-6 flex justify-between items-center gap-3">
           <button
             onClick={handleAddToCart}
-            disabled={!food.isAvailable}               // ← DISABLED WHEN UNAVAILABLE
+            disabled={!food.isAvailable}            
             className={`flex items-center gap-2 font-semibold py-2 px-4 rounded-xl shadow transition-all text-sm ${
               food.isAvailable
                 ? 'bg-yellow-400 text-gray-900 hover:bg-yellow-500'

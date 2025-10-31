@@ -13,7 +13,7 @@ export default function CreateFoodDark() {
 		imageUrl: '',
 		isSpecial: false,
 		tags: '',
-		shopkeeper: '', // optional for now
+		shopkeeper: '',
 	});
 	const [imageFile, setImageFile] = useState(null);
 	const [error, setError] = useState('');
@@ -45,7 +45,6 @@ export default function CreateFoodDark() {
 		const data = new FormData();
 		Object.entries(formData).forEach(([key, value]) => {
 			if (value) {
-				// Special handling for tags (string → array)
 				if (key === 'tags') {
 					const tagsArray = value
 						.split(',')
@@ -84,7 +83,6 @@ export default function CreateFoodDark() {
 				{error && <p className="text-red-500 mb-2">{error}</p>}
 
 				<form className="space-y-4" onSubmit={handleSubmit} encType="multipart/form-data">
-					{/* Name */}
 					<input
 						type="text"
 						name="name"
@@ -95,7 +93,6 @@ export default function CreateFoodDark() {
 						className="w-full p-3 rounded-xl bg-gray-800/50 text-white placeholder-gray-400 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#FFB900]"
 					/>
 
-					{/* Price */}
 					<input
 						type="number"
 						name="price"
@@ -106,7 +103,6 @@ export default function CreateFoodDark() {
 						className="w-full p-3 rounded-xl bg-gray-800/50 text-white placeholder-gray-400 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#FFB900]"
 					/>
 
-					{/* Description */}
 					<textarea
 						name="description"
 						placeholder="Description"
@@ -115,7 +111,6 @@ export default function CreateFoodDark() {
 						className="w-full p-3 rounded-xl bg-gray-800/50 text-white placeholder-gray-400 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#FFB900]"
 					/>
 
-					{/* Category Dropdown */}
 					<select
 						name="category"
 						value={formData.category}
@@ -131,7 +126,6 @@ export default function CreateFoodDark() {
 						<option value="Beverage">Beverage</option>
 					</select>
 
-					{/* Availability */}
 					<label className="flex items-center gap-2 text-white">
 						<input
 							type="checkbox"
@@ -143,7 +137,6 @@ export default function CreateFoodDark() {
 						Available
 					</label>
 
-					{/* Special Dish */}
 					<label className="flex items-center gap-2 text-white">
 						<input
 							type="checkbox"
@@ -165,7 +158,6 @@ export default function CreateFoodDark() {
 						className="w-full p-3 rounded-xl bg-gray-800/50 text-white placeholder-gray-400 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#FFB900]"
 					/>
 
-					{/* Image Upload */}
 					<input
 						type="file"
 						accept="image/*"
@@ -181,7 +173,6 @@ export default function CreateFoodDark() {
 						className="w-full p-3 rounded-xl bg-gray-800/50 text-white placeholder-gray-400 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#FFB900]"
 					/>
 
-					{/* Image Preview */}
 					{imageFile && (
 						<div className="mt-2">
 							<img
@@ -192,7 +183,6 @@ export default function CreateFoodDark() {
 						</div>
 					)}
 
-					{/* Image Search */}
 					<div className="w-full items-center mt-4">
 						<motion.button
 							type="button"
@@ -204,7 +194,6 @@ export default function CreateFoodDark() {
 						</motion.button>
 					</div>
 
-					{/* Submit Button */}
 					<motion.button
 						type="submit"
 						whileHover={{ scale: 1.03, boxShadow: '0px 0px 15px rgba(255, 185, 0, 0.6)' }}

@@ -3,9 +3,7 @@ import React from "react";
 export default function Hero() {
 	return (
 		<div className="overflow-hidden pb-14">
-			{/* ====== HERO SECTION ====== */}
 			<div className="relative mx-auto flex h-[28em] w-full max-w-[1880px] items-center justify-center rounded-t-3xl bg-white md:h-[40em] overflow-visible">
-				{/* Background Images */}
 				<div className="absolute left-0 top-[32px] h-auto w-[70%] translate-x-[-70%]">
 					<img
 						loading="lazy"
@@ -23,7 +21,6 @@ export default function Hero() {
 					/>
 				</div>
 
-				{/* Center Text */}
 				<div className="absolute top-[142px] flex flex-col items-center gap-6 2xl:gap-8 justify-center md:top-[240px]">
 					<div className="w-5/12 whitespace-pre-line text-center font-semibold text-zRed500 md:w-5/12 lg:w-8/12 text-heading">
 						Better food for more people
@@ -33,7 +30,6 @@ export default function Hero() {
 					</div>
 				</div>
 
-				{/* Floating Images */}
 				<img
 					src="https://b.zmtcdn.com/data/o2_assets/110a09a9d81f0e5305041c1b507d0f391743058910.png"
 					alt="hero floating"
@@ -66,9 +62,7 @@ export default function Hero() {
 				/>
 			</div>
 
-			{/* ====== STATS BAR ====== */}
 			<div className="z-50 bg-white mx-auto flex w-fit max-w-screen-lg items-center justify-center gap-8 rounded-2xl border-[0.64px] border-zRed100 px-4 py-3 shadow-[0px_2.777px_13.401px_0px_rgba(0,0,0,0.09)] lg:rounded-[32px] lg:px-7 lg:py-6 2xl:gap-12 2xl:mt-14">
-				{/* 1️⃣ Restaurants */}
 				<div className="flex items-center">
 					<div>
 						<div className="text-2xl font-bold text-comet lg:text-3xl 2xl:text-4xl">3,00,000+</div>
@@ -81,10 +75,8 @@ export default function Hero() {
 					/>
 				</div>
 
-				{/* Divider */}
 				<div className="h-9 lg:h-12 xl:h-16 w-1 border-l border-lavenderMist"></div>
 
-				{/* 2️⃣ Cities */}
 				<div className="flex items-center">
 					<div>
 						<div className="text-2xl font-bold text-comet lg:text-3xl 2xl:text-4xl">800+</div>
@@ -97,10 +89,8 @@ export default function Hero() {
 					/>
 				</div>
 
-				{/* Divider */}
 				<div className="h-9 lg:h-12 xl:h-16 w-1 border-l border-lavenderMist"></div>
 
-				{/* 3️⃣ Orders */}
 				<div className="flex items-center">
 					<div>
 						<div className="text-2xl font-bold text-comet lg:text-3xl 2xl:text-4xl">3 billion+</div>

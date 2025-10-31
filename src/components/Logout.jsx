@@ -11,8 +11,7 @@ export default function Logout() {
 	const handleLogout = async () => {
 		try {
 			await axios.post('/auth/logout', {}, { withCredentials: true });
-			// Optionally clear frontend state if you store user info
-			// e.g., setUser(null);
+		
 			navigate('/login'); // redirect to login page
 		} catch (err) {
 			console.error('Logout failed', err);

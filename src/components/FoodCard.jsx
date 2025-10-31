@@ -6,10 +6,9 @@ import ShimmerGrid from './shimer/ShimmerGrid';
 
 export default function FoodCard({ foods, onEdit, onDelete }) {
 	const [editingFood, setEditingFood] = useState(null);
-	const BASE_URL = import.meta.env.VITE_API_BASE || 'http://localhost:5000';
+	const BASE_URL = import.meta.env.VITE_API_BASE || 'https://swaaad-backend.onrender.com';
 	const [foodToDelete, setFoodToDelete] = useState(null);
 	const [loading, setLoading] = useState(true);
-	// map categories to icons
 	const categoryIcons = {
 		beverage: <Coffee className="w-6 h-6 text-yellow-400" />,
 		pizza: <Pizza className="w-6 h-6 text-yellow-400" />,
@@ -40,7 +39,6 @@ export default function FoodCard({ foods, onEdit, onDelete }) {
 						<div className="h-48 bg-gray-800 flex items-center justify-center relative">
 							{food.imageUrl ? (
 								<img
-									// src={`${BASE_URL}${food.imageUrl}`}
 									src={food.imageUrl}
 									alt={food.name}
 									className="object-cover rounded-t-lg   hover:scale-105 transition-transform duration-300 h-full w-full"
@@ -49,7 +47,6 @@ export default function FoodCard({ foods, onEdit, onDelete }) {
 								<span className="text-gray-500 text-sm">No image available</span>
 							)}
 
-							{/* Availability Badge */}
 							<motion.span
 								initial={{ scale: 0 }}
 								animate={{ scale: 1 }}
@@ -59,14 +56,12 @@ export default function FoodCard({ foods, onEdit, onDelete }) {
 							</motion.span>
 						</div>
 
-						{/* Content Section */}
 						<div className="p-5 space-y-2">
 							<h3 className="text-xl font-bold text-white flex items-center gap-2 capitalize">{food.name}</h3>
 							<p className="text-green-400 font-semibold text-lg">₹{food.price}</p>
 							<p className="text-gray-300 text-sm">{food.description || 'No description provided.'}</p>
 							<p className="text-gray-400 text-xs">Category: {food.category || 'Uncategorized'}</p>
 
-							{/* Action Buttons */}
 							<div className="flex gap-3 mt-4">
 								<motion.button
 									onClick={() => setEditingFood(food)}
@@ -86,7 +81,6 @@ export default function FoodCard({ foods, onEdit, onDelete }) {
 				))}
 			</motion.div>
 
-			{/* Edit Modal */}
 			{editingFood && (
 				<EditFoodForm
 					food={editingFood}

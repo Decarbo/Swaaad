@@ -9,7 +9,7 @@ export default function UserLayout() {
 		<>
 			<UserNavbar />
 			<main>
-				<Outlet /> {/* Child route renders here */}
+				<Outlet />
 			</main>
 		</>
 	);

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import RestaurantMenu from './RestaurantMenu';
+import { Link } from 'react-router-dom';
 
 const images = [
 	{
@@ -24,7 +26,7 @@ const images = [
 	},
 ];
 
-export default function LandingNoFlash() {
+export default function Landing() {
 	const [current, setCurrent] = useState(0);
 
 	useEffect(() => {
@@ -84,10 +86,11 @@ export default function LandingNoFlash() {
 				</motion.p>
 
 				<div className="mt-8">
-					<button className="group relative overflow-hidden bg-[#FFB900] text-[#323130] font-semibold px-8 py-3 rounded-full hover:bg-[#ffcd3c] transition-all duration-300 shadow-lg">
-						<span className="relative z-10">View Menu</span>
-						<div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-40 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-					</button>
+					<Link to="/restaurantmenu">
+						<button className="group relative overflow-hidden bg-[#FFB900] text-[#323130] font-semibold px-8 py-3 rounded-full hover:bg-[#ffcd3c] transition-all duration-300 shadow-lg">
+							<span className="relative z-10">View Menu</span>
+						</button>
+					</Link>
 				</div>
 			</div>
 

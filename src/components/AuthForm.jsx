@@ -30,7 +30,6 @@ export default function AuthFormDark({ onSubmit, isRegister }) {
 
 	return (
 		<div className="relative min-h-screen flex items-center justify-center bg-gray-900 overflow-hidden">
-			{/* Floating decorative circles */}
 			<motion.div
 				className="absolute w-72 h-72 bg-[#FFB900]/20 rounded-full top-10 -left-16 filter blur-3xl animate-spin-slow"
 				animate={{ rotate: 360 }}
@@ -42,7 +41,6 @@ export default function AuthFormDark({ onSubmit, isRegister }) {
 				transition={{ repeat: Infinity, duration: 100, ease: 'linear' }}
 			/>
 
-			{/* Glassmorphic form card */}
 			<motion.div
 				initial={{ opacity: 0, y: 50 }}
 				animate={{ opacity: 1, y: 0 }}

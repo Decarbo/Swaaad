@@ -1,4 +1,3 @@
-// src/pages/MyOrders.jsx
 import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
@@ -6,7 +5,7 @@ import { motion, LazyMotion, domAnimation } from 'framer-motion';
 import { Utensils, Clock, Calendar } from 'lucide-react';
 import ShimmerGrid from '../shimer/ShimmerGrid';
 
-const BASE_URL = 'http://localhost:5000/api';
+const BASE_URL = 'https://swaaad-backend.onrender.com/api';
 
 // Memoized OrderCard
 const OrderCard = memo(({ order }) => {
@@ -38,13 +37,11 @@ const OrderCard = memo(({ order }) => {
 			initial={{ opacity: 0, y: 20 }}
 			animate={{ opacity: 1, y: 0 }}
 			className="bg-gray-800 p-5 rounded-2xl shadow-lg border border-gray-700 hover:shadow-yellow-500/10 transition-shadow">
-			{/* Restaurant + Status */}
 			<div className="flex justify-between items-center mb-3">
 				<h2 className="text-xl font-semibold">{order.restaurant?.restaurantName || 'Restaurant'}</h2>
 				<span className={`px-3 py-1 rounded-full font-semibold text-sm ${order.status === 'Pending' ? 'bg-yellow-400 text-gray-900' : order.status === 'Table Assigned' ? 'bg-green-500 text-white' : 'bg-gray-600 text-white'}`}>{order.status}</span>
 			</div>
 
-			{/* Table Info */}
 			{order.tableNumber && (
 				<div className="flex items-center gap-3 mb-3 bg-green-600/20 p-3 rounded-lg border border-green-500/30">
 					<Utensils
@@ -63,7 +60,6 @@ const OrderCard = memo(({ order }) => {
 				</div>
 			)}
 
-			{/* Food Items */}
 			<div className="space-y-2">
 				{order.items?.map((item) => (
 					<div
@@ -88,7 +84,6 @@ const OrderCard = memo(({ order }) => {
 				))}
 			</div>
 
-			{/* Total + Time */}
 			<div className="mt-3 border-t border-gray-700 pt-3 flex justify-between items-center">
 				<p className="font-bold text-lg text-yellow-400">Total: ₹{order.totalPrice}</p>
 				<p className="text-gray-400 text-sm flex items-center gap-1">
@@ -96,7 +91,6 @@ const OrderCard = memo(({ order }) => {
 					{formatDate(order.createdAt)}
 				</p>
 			</div>
-			{/* Cancel Button */}
 			{['Pending', 'Table Requested'].includes(order.status) && (
 				<button
 					onClick={handleCancel}

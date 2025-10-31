@@ -67,7 +67,7 @@ export default function CartPage() {
 
 	const [showModal, setShowModal] = useState(false);
 	const [loading, setLoading] = useState(false);
-	const BASE_URL = 'http://localhost:5000/api';
+	const BASE_URL = 'https://swaaad-backend.onrender.com/api';
 
 	const totalPrice = useMemo(() => items.reduce((sum, i) => sum + i.price * i.quantity, 0), [items]);
 
