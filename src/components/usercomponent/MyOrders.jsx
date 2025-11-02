@@ -2,8 +2,9 @@ import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { motion, LazyMotion, domAnimation } from 'framer-motion';
-import { Utensils, Clock, Calendar } from 'lucide-react';
+import { Utensils, Clock, Calendar, LogIn, Lock } from 'lucide-react';
 import ShimmerGrid from '../shimer/ShimmerGrid';
+import { Link } from 'react-router-dom';
 
 const BASE_URL = 'https://swaaad-backend.onrender.com/api';
 
@@ -32,6 +33,7 @@ const OrderCard = memo(({ order }) => {
 			alert(err.response?.data?.error || 'Failed to cancel order');
 		}
 	};
+
 	return (
 		<motion.div
 			initial={{ opacity: 0, y: 20 }}
@@ -127,9 +129,156 @@ export default function MyOrders() {
 		fetchOrders();
 	}, [user]);
 
-	if (!user) return <p className="text-center mt-10 text-gray-300">Please login to view your orders.</p>;
-	if (loading) return <ShimmerGrid count={3} />;
-	if (!orders.length) return <p className="text-center mt-10 text-gray-400">You have no orders yet.</p>;
+	if (!user)
+		return (
+			<LazyMotion features={domAnimation}>
+				<div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-black flex items-center justify-center p-6">
+					<motion.div
+						initial={{ opacity: 0, y: 20 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.6, type: 'spring', stiffness: 100 }}
+						className="max-w-md w-full">
+						<div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-10 shadow-2xl text-center overflow-hidden">
+							{/* Animated Background Orbs */}
+							<div className="absolute -top-12 -left-12 w-48 h-48 bg-yellow-500/20 rounded-full blur-3xl animate-pulse"></div>
+							<div className="absolute -bottom-12 -right-12 w-64 h-64 bg-orange-500/20 rounded-full blur-3xl animate-pulse delay-700"></div>
+
+							{/* Lock Icon with Pulse */}
+							<motion.div
+								initial={{ scale: 0 }}
+								animate={{ scale: 1 }}
+								transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
+								className="relative inline-block mb-6">
+								<div className="w-24 h-24 mx-auto bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full p-1">
+									<div className="w-full h-full bg-gray-900 rounded-full flex items-center justify-center">
+										<Lock className="w-12 h-12 text-yellow-400" />
+									</div>
+								</div>
+								<motion.div
+									animate={{ scale: [1, 1.2, 1] }}
+									transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+									className="absolute inset-0 rounded-full border-4 border-dashed border-yellow-400/40"
+								/>
+							</motion.div>
+
+							{/* Message */}
+							<motion.h2
+								initial={{ y: 10, opacity: 0 }}
+								animate={{ y: 0, opacity: 1 }}
+								transition={{ delay: 0.3 }}
+								className="text-2xl sm:text-3xl font-bold text-white mb-3">
+								Login Required
+							</motion.h2>
+
+							<motion.p
+								initial={{ y: 10, opacity: 0 }}
+								animate={{ y: 0, opacity: 1 }}
+								transition={{ delay: 0.4 }}
+								className="text-gray-300 text-base mb-8 leading-relaxed">
+								Sign in to view your orders, track deliveries, and explore your dining history.
+							</motion.p>
+
+							{/* CTA Button */}
+							<motion.div
+								initial={{ y: 20, opacity: 0 }}
+								animate={{ y: 0, opacity: 1 }}
+								transition={{ delay: 0.5 }}>
+								<Link
+									to="/user/login"
+									className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-lg">
+									<LogIn className="w-5 h-5" />
+									<span>Login Now</span>
+								</Link>
+							</motion.div>
+
+							{/* Subtle Hint */}
+							<motion.p
+								initial={{ opacity: 0 }}
+								animate={{ opacity: 1 }}
+								transition={{ delay: 0.7 }}
+								className="text-xs text-gray-500 mt-6">
+								New here? <Link to="/user/register" className="text-yellow-400 font-medium hover:underline"> Create an account</Link>
+							</motion.p>
+						</div>
+					</motion.div>
+				</div>
+			</LazyMotion>
+		);
+
+	if (loading) return <ShimmerGrid count={8} />;
+	if (!orders.length) {
+		return (
+			<LazyMotion features={domAnimation}>
+				<div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-black text-white flex items-center justify-center p-6">
+					<motion.div
+						initial={{ opacity: 0, scale: 0.9 }}
+						animate={{ opacity: 1, scale: 1 }}
+						transition={{ duration: 0.5, type: 'spring', stiffness: 120 }}
+						className="max-w-md w-full">
+						<div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-10 shadow-2xl text-center overflow-hidden">
+							{/* Decorative Gradient Orbs */}
+							<div className="absolute -top-10 -left-10 w-40 h-40 bg-yellow-500/20 rounded-full blur-3xl"></div>
+							<div className="absolute -bottom-10 -right-10 w-56 h-56 bg-orange-500/20 rounded-full blur-3xl"></div>
+
+							{/* Main Illustration */}
+							<motion.div
+								initial={{ y: 20, opacity: 0 }}
+								animate={{ y: 0, opacity: 1 }}
+								transition={{ delay: 0.2 }}
+								className="mb-8">
+								<div className="relative inline-block">
+									<div className="w-32 h-32 mx-auto bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full p-1">
+										<div className="w-full h-full bg-gray-900 rounded-full flex items-center justify-center">
+											<Utensils className="w-16 h-16 text-yellow-400" />
+										</div>
+									</div>
+									<motion.div
+										animate={{ rotate: 360 }}
+										transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+										className="absolute inset-0 rounded-full border-4 border-dashed border-yellow-400/30"
+									/>
+								</div>
+							</motion.div>
+
+							{/* Text Content */}
+							<motion.h2
+								initial={{ y: 10, opacity: 0 }}
+								animate={{ y: 0, opacity: 1 }}
+								transition={{ delay: 0.3 }}
+								className="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-orange-500 mb-3">
+								Your Plate is Empty
+							</motion.h2>
+
+							<motion.p
+								initial={{ y: 10, opacity: 0 }}
+								animate={{ y: 0, opacity: 1 }}
+								transition={{ delay: 0.4 }}
+								className="text-gray-300 text-base mb-8 leading-relaxed">
+								Time to explore delicious meals crafted by top chefs. Your next favorite dish is just a tap away!
+							</motion.p>
+
+							{/* CTA Button */}
+							<motion.div
+								initial={{ y: 20, opacity: 0 }}
+								animate={{ y: 0, opacity: 1 }}
+								transition={{ delay: 0.5 }}>
+								<Link
+									to="/menu"
+									className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-lg">
+									<span>Browse Menu</span>
+									<motion.span
+										animate={{ x: [0, 4, 0] }}
+										transition={{ duration: 1.5, repeat: Infinity }}>
+										→
+									</motion.span>
+								</Link>
+							</motion.div>
+						</div>
+					</motion.div>
+				</div>
+			</LazyMotion>
+		);
+	}
 
 	return (
 		<LazyMotion features={domAnimation}>

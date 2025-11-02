@@ -70,7 +70,7 @@ export default function CreateFoodDark() {
 	};
 
 	return (
-		<div className="relative min-h-screen flex items-center justify-center bg-gray-900 overflow-hidden">
+		<div className="relative min-h-screen flex items-center justify-center bg-gray-900 overflow-hidden pt-18">
 			<motion.div
 				initial={{ opacity: 0, y: 40 }}
 				animate={{ opacity: 1, y: 0 }}

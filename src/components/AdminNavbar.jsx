@@ -9,7 +9,6 @@ export default function AdminNavbar() {
   const [open, setOpen] = useState(false);
   const { admin } = useSelector((state) => state.admin);
 
-  console.log('🧩 Admin from Redux:', admin);
 
   const links = [
     { name: 'Dashboard', path: '/admin' },

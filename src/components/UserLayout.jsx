@@ -6,11 +6,11 @@ import UserNavbar from './UserNavbar';
 
 export default function UserLayout() {
 	return (
-		<>
+		<div className='bg-gray-900 '>
 			<UserNavbar />
 			<main>
 				<Outlet />
 			</main>
-		</>
+		</div>
 	);
 }

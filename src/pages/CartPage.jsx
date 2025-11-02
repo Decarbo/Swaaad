@@ -2,9 +2,11 @@ import React, { useState, useMemo, Suspense, lazy, memo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { increaseQuantity, decreaseQuantity, removeFromCart, clearCart } from '../redux/slice/cartSlice';
 import { motion } from 'framer-motion';
-import { Trash2, ShoppingBag } from 'lucide-react';
+import { Trash2 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { LazyMotion, domAnimation } from 'framer-motion';
+import { ShoppingBag, ArrowRight, Sparkles } from 'lucide-react';
 
 const BookingModal = lazy(() => import('../components/BookingModal'));
 
@@ -103,25 +105,115 @@ export default function CartPage() {
 
 	if (items.length === 0)
 		return (
-			<motion.div
-				className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-gray-950 via-gray-900 to-black text-white text-center p-6"
-				initial={{ opacity: 0 }}
-				animate={{ opacity: 1 }}>
+			<LazyMotion features={domAnimation}>
 				<motion.div
-					className="flex flex-col items-center"
-					initial={{ scale: 0.8 }}
-					animate={{ scale: 1 }}
-					transition={{ type: 'spring', stiffness: 100 }}>
-					<ShoppingBag className="w-20 h-20 text-yellow-400 mb-4" />
-					<h2 className="text-2xl font-bold mb-2">Your cart is empty</h2>
-					<p className="text-gray-400 mb-6">Looks like you haven’t added any delicious food yet.</p>
-					<Link
-						to="/menu"
-						className="bg-yellow-400 text-gray-900 font-semibold px-6 py-3 rounded-xl hover:bg-yellow-500 transition-all shadow-lg">
-						Explore Menu
-					</Link>
+					className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-950 via-gray-900 to-black text-white p-6 overflow-hidden relative"
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					transition={{ duration: 0.8 }}>
+					{/* Animated Background Orbs */}
+					<div className="absolute inset-0 overflow-hidden pointer-events-none">
+						<motion.div
+							animate={{
+								x: [0, 100, 0],
+								y: [0, -100, 0],
+							}}
+							transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+							className="absolute top-20 left-20 w-72 h-72 bg-yellow-500/10 rounded-full blur-3xl"
+						/>
+						<motion.div
+							animate={{
+								x: [0, -80, 0],
+								y: [0, 80, 0],
+							}}
+							transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
+							className="absolute bottom-20 right-20 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl"
+						/>
+					</div>
+
+					<motion.div
+						className="relative z-10 max-w-md w-full"
+						initial={{ scale: 0.9, y: 20 }}
+						animate={{ scale: 1, y: 0 }}
+						transition={{ type: 'spring', stiffness: 120, damping: 20 }}>
+						{/* Floating 3D Shopping Bag */}
+						<motion.div
+							className="relative mb-8"
+							animate={{
+								y: [0, -20, 0],
+								rotate: [0, 5, -5, 0],
+							}}
+							transition={{
+								y: { duration: 4, repeat: Infinity, ease: 'easeInOut' },
+								rotate: { duration: 6, repeat: Infinity, ease: 'linear' },
+							}}>
+							<div className="relative inline-block">
+								{/* Bag Shadow */}
+								<motion.div
+									animate={{ scale: [1, 1.1, 1] }}
+									transition={{ duration: 4, repeat: Infinity }}
+									className="absolute inset-0 bg-yellow-400/20 rounded-full blur-2xl -z-10"
+								/>
+
+								{/* Bag Container */}
+								<div className="relative p-6 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-3xl shadow-2xl transform-gpu">
+									<ShoppingBag className="w-24 h-24 text-gray-900" />
+
+									{/* Floating Sparkles */}
+									<motion.div
+										animate={{ rotate: 360 }}
+										transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
+										className="absolute -top-2 -right-2">
+										<Sparkles className="w-6 h-6 text-yellow-300" />
+									</motion.div>
+									<motion.div
+										animate={{ rotate: -360 }}
+										transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
+										className="absolute -bottom-2 -left-2">
+										<Sparkles className="w-5 h-5 text-orange-300" />
+									</motion.div>
+								</div>
+							</div>
+						</motion.div>
+
+						{/* Text Content */}
+						<motion.div
+							initial={{ opacity: 0, y: 10 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ delay: 0.3 }}
+							className="text-center space-y-4">
+							<h2 className="text-3xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-orange-500 ">Your Cart is Empty</h2>
+							<p className="text-gray-300 text-base leading-relaxed max-w-xs mx-auto">Looks like you haven’t added any delicious food yet. Let’s fill it with flavor!</p>
+						</motion.div>
+
+						{/* CTA Button */}
+						<motion.div
+							initial={{ opacity: 0, y: 20 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ delay: 0.5 }}
+							className="mt-10 flex justify-center">
+							<Link
+								to="/menu"
+								className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-gray-900 font-bold text-lg rounded-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 overflow-hidden">
+								{/* Ripple Effect */}
+								<span className="absolute inset-0 bg-white/20 transform scale-0 group-active:scale-150 transition-transform duration-500 rounded-full" />
+
+								<span className="relative z-10 flex items-center gap-3">
+									Explore Menu
+									<motion.span
+										animate={{ x: [0, 4, 0] }}
+										transition={{ duration: 1.5, repeat: Infinity }}
+										className="inline-block">
+										<ArrowRight className="w-5 h-5" />
+									</motion.span>
+								</span>
+							</Link>
+						</motion.div>
+
+
+					</motion.div>
 				</motion.div>
-			</motion.div>
+			</LazyMotion>
 		);
 
 	return (
