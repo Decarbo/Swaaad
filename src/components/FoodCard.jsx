@@ -66,7 +66,7 @@ export default function FoodCard({ foods, onEdit, onDelete }) {
 								<motion.button
 									onClick={() => setEditingFood(food)}
 									whileHover={{ scale: 1.03 }}
-									className="flex-1 px-3 py-2 cursor-pointer bg-[#0078D4] text-white rounded-xl font-semibold hover:bg-[#005A9E] transition">
+									className="flex-1 px-3 py-2 cursor-pointer bg-yellow-400 text-white rounded-xl font-semibold hover:bg-yellow-400/70 transition">
 									Edit
 								</motion.button>
 								<motion.button
